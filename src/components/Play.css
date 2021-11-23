@@ -1,0 +1,12 @@
+.playIcon {
+  position: absolute;
+  bottom: 5%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.playIcon > img {
+  align-self: center;
+  cursor: pointer;
+}

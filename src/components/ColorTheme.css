@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  flex-direction: row; /* row is default */
+  height: 100vh;
+}
+
+#colorCenter {
+  background-color: #4dc2a4;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+}
+
+#colorRight1 {
+  background-color: #4faec5;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+}
+
+#colorRight2 {
+  background-color: #527cc7;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+}
+
+#colorLeft1 {
+  background-color: #9844a7;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+}
+
+#colorLeft2 {
+  background-color: #844290;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+}

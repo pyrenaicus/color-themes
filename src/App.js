@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useRef } from "react";
+import "./App.css";
+import { hsluvToHex } from "hsluv";
+import ColorTheme from "./components/ColorTheme";
+import Menu from "./components/Menu";
+import Play from "./components/Play";
+import HiddenCanvas from "./components/HiddenCanvas";
 
-function App() {
+export default function App() {
+  const [colors, setColors] = useState({
+    colorLeft1: "#222222",
+    colorLeft2: "#bbbbbb",
+    colorCenter: "#222222",
+    colorRight1: "#bbbbbb",
+    colorRight2: "#222222",
+  });
+
+  const [imgData, setImgData] = useState("");
+
+  const savePNG = useRef(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Menu savePNG={savePNG} imgData={imgData} />
+      <ColorTheme colors={colors} />
+      <Play colors={colors} setColors={setColors} />
+      <HiddenCanvas colors={colors} savePNG={savePNG} setImgData={setImgData} />
+    </>
   );
 }
-
-export default App;
