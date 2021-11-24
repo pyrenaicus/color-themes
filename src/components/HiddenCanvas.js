@@ -11,23 +11,25 @@ export default function HiddenCanvas({ colors, savePNG, setImgData }) {
   const canvasRef = useRef(null);
 
   const draw = (ctx) => {
+    ctx.fillStyle = "#fff";
+    ctx.fillRect(0, 0, 750, 500);
     ctx.fillStyle = colorLeft2;
-    ctx.fillRect(0, 0, 150, 500);
+    ctx.fillRect(0, 0, 150, 475);
     ctx.fillStyle = colorLeft1;
-    ctx.fillRect(150, 0, 150, 500);
+    ctx.fillRect(150, 0, 150, 475);
     ctx.fillStyle = colorCenter;
-    ctx.fillRect(300, 0, 150, 500);
+    ctx.fillRect(300, 0, 150, 475);
     ctx.fillStyle = colorRight1;
-    ctx.fillRect(450, 0, 150, 500);
+    ctx.fillRect(450, 0, 150, 475);
     ctx.fillStyle = colorRight2;
-    ctx.fillRect(600, 0, 150, 500);
+    ctx.fillRect(600, 0, 150, 475);
     ctx.fillStyle = "#222";
-    ctx.font = "20px Source Code Pro, monospace";
-    ctx.fillText(colorLeft2.toUpperCase(), 30, 450);
-    ctx.fillText(colorLeft1.toUpperCase(), 180, 450);
-    ctx.fillText(colorCenter.toUpperCase(), 330, 450);
-    ctx.fillText(colorRight1.toUpperCase(), 480, 450);
-    ctx.fillText(colorRight2.toUpperCase(), 630, 450);
+    ctx.font = "16px Source Code Pro, monospace";
+    ctx.fillText(colorLeft2.toUpperCase(), 30, 490);
+    ctx.fillText(colorLeft1.toUpperCase(), 180, 490);
+    ctx.fillText(colorCenter.toUpperCase(), 330, 490);
+    ctx.fillText(colorRight1.toUpperCase(), 480, 490);
+    ctx.fillText(colorRight2.toUpperCase(), 630, 490);
   };
 
   useEffect(() => {

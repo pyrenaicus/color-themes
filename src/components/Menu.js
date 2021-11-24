@@ -1,6 +1,8 @@
 import "./Menu.css";
+import { useState } from "react";
 
 export default function Menu({ savePNG, imgData, setThemeMethod }) {
+  const [activeMenu, setActiveMenu] = useState("complementary");
   function saveImage() {
     savePNG.current();
     console.log(savePNG.current);
@@ -30,13 +32,27 @@ export default function Menu({ savePNG, imgData, setThemeMethod }) {
             <a
               className="menuItem"
               href="#"
+              onClick={() => setThemeMethod("complementary")}
+              // {activeMenu && className='activeMenu'}
+            >
+              complementary
+            </a>
+          </li>
+          <li className="menu">
+            <a
+              className="menuItem"
+              href="#"
               onClick={() => setThemeMethod("analogous")}
             >
               analogous
             </a>
           </li>
           <li className="menu">
-            <a className="menuItem" href="#">
+            <a
+              className="menuItem"
+              href="#"
+              onClick={() => setThemeMethod("monochromatic")}
+            >
               monochromatic
             </a>
           </li>

@@ -11,77 +11,80 @@ export function generateRandomHue() {
   return Math.trunc(Math.random() * 361);
 }
 
+// create HSL color from given hue, returns a Color object
 export function baseColor(hue) {
-  console.log("chroma...");
-  console.log(chroma(hue, sat, light, "hsl"));
-  return chroma(hue, sat, light, "hsl").hex();
+  const color = chroma.hsl(hue, sat, light);
+  return color;
 }
 
-export function generateHsluvColor(hue, saturation, lightness) {
-  const hsluvColor = [hue, saturation, lightness];
-  console.log(`hsluv color: ${hsluvColor}`);
-  return hsluvColor;
-}
-
-// export function generateHsluvRandomColor(saturation, lightness) {
-//   const hsluvColor = [generateRandomHue(), saturation, lightness];
-//   console.log(`hsluv color: ${hsluvColor}`);
-//   return hsluvColor;
-// }
-
-export function generatePaletteHsluv(centralColor) {
-  const centralHue = centralColor[0];
-  const saturation = centralColor[1];
-  const lightness = centralColor[2];
-
-  const colors = {
-    colorRight2: hsluvToHex([(centralHue + 240) % 360, saturation, lightness]),
-    colorRight1: hsluvToHex([(centralHue + 200) % 360, saturation, lightness]),
-    colorCenter: hsluvToHex(centralColor),
-    colorLeft1: hsluvToHex([(centralHue + 30) % 360, saturation, lightness]),
-    colorLeft2: hsluvToHex([(centralHue + 60) % 360, saturation, lightness]),
-  };
-
-  return colors;
-}
-// split complementary theme
-export function generateThemeSplit(centralColor) {
-  const hsl = chroma(centralColor).hsl();
-  const centralHue = hsl[0];
-  const saturation = hsl[1];
-  const lightness = hsl[2];
-  const colorRight = chroma([
-    (centralHue + 195) % 360,
-    saturation,
-    lightness,
-    "hsl",
-  ]).hex();
-  const colorCenter = centralColor;
-  const colorLeft = chroma([
-    (centralHue - 30) % 360,
-    saturation,
-    lightness,
-    "hsl",
-  ]).hex();
-  const colors = chroma.scale([colorRight, colorCenter, colorLeft]).colors(5);
-  console.log("colors");
-  console.log(colors);
+// split complementary theme (+180º), seed on left
+export function splitComplementaryTheme(seedColor) {
+  const seedHue = chroma(seedColor).get("hsl.h");
+  const s = chroma(seedColor).get("hsl.s");
+  const l = chroma(seedColor).get("hsl.l");
+  const delta1 = 165;
+  const delta2 = 195;
+  const hue1 = seedHue + delta1;
+  const hue2 = seedHue + delta2;
+  const colorLeft1 = chroma.hsl(seedHue + 20, s, l);
+  const colorRight1 = chroma.hsl(hue1, s, l);
+  const colorRight2 = chroma.hsl(hue2, s, l);
+  const colors = chroma
+    .scale([seedColor, colorRight2])
+    .correctLightness()
+    .gamma(0.4)
+    .mode("lab")
+    .colors(5);
   return colors;
 }
 
-// analogous theme
-export function generateThemeAnalogous(centralColor) {
-  const centralHue = centralColor[0];
-  const saturation = centralColor[1];
-  const lightness = centralColor[2];
+// complementary theme (+180º), seed on left
+export function complementaryTheme(seedColor) {
+  const seedHue = chroma(seedColor).get("hsl.h");
+  const s = chroma(seedColor).get("hsl.s");
+  const l = chroma(seedColor).get("hsl.l");
+  const delta = 180;
+  const hue = seedHue + delta;
+  const colorRight = chroma.hsl(hue, s, l);
+  const colors = chroma
+    .scale([seedColor, colorRight])
+    .correctLightness()
+    .mode("lab")
+    .colors(5);
+  return colors;
+}
 
-  const colors = {
-    colorRight2: hsluvToHex([(centralHue - 40) % 360, saturation, lightness]),
-    colorRight1: hsluvToHex([(centralHue - 20) % 360, saturation, lightness]),
-    colorCenter: hsluvToHex(centralColor),
-    colorLeft1: hsluvToHex([(centralHue + 20) % 360, saturation, lightness]),
-    colorLeft2: hsluvToHex([(centralHue + 40) % 360, saturation, lightness]),
-  };
+// analogous theme (0, 30, 60), seed on left
+export function analogousTheme(seedColor) {
+  const seedHue = chroma(seedColor).get("hsl.h");
+  const s = chroma(seedColor).get("hsl.s");
+  const l = chroma(seedColor).get("hsl.l");
+  const delta = 60;
+  const hue = (seedHue + delta) % 360;
+  const colorLeft = chroma.hsl(seedHue, 0.4, 0.3);
+  const colorRight = chroma.hsl(hue, 0.84, 0.7);
+  const colorCenter = chroma.hsl(seedHue + 30, 0.7, 0.6);
+  const colors = chroma
+    .bezier([colorLeft, colorCenter, colorRight])
+    .scale()
+    .correctLightness()
+    .mode("lab")
+    .colors(5);
+  return colors;
+}
 
+// monochromatic theme, seed on left
+export function monochromaticTheme(seedColor) {
+  const hue = chroma(seedColor).get("hsl.h");
+  const s = chroma(seedColor).get("hsl.s");
+  const l = chroma(seedColor).get("hsl.l");
+  const colorLeft = chroma.hsl(hue, 0.6, 0.1);
+  const colorRight = chroma.hsl(hue + 180, 0.6, 0.96);
+  const colors = chroma
+    .bezier([colorLeft, colorRight])
+    .scale()
+    .correctLightness()
+    .mode("lab")
+    .colors(5);
   return colors;
 }
