@@ -1,6 +1,6 @@
 import "./Menu.css";
 
-export default function Menu({ savePNG, imgData }) {
+export default function Menu({ savePNG, imgData, setThemeMethod }) {
   function saveImage() {
     savePNG.current();
     console.log(savePNG.current);
@@ -18,12 +18,20 @@ export default function Menu({ savePNG, imgData }) {
         <ul className="sidebarMenuInner">
           <li className="menu title">color combination</li>
           <li className="menu">
-            <a className="menuItem" href="#">
+            <a
+              className="menuItem"
+              href="#"
+              onClick={() => setThemeMethod("splitComplementary")}
+            >
               split complementary
             </a>
           </li>
           <li className="menu">
-            <a className="menuItem" href="#">
+            <a
+              className="menuItem"
+              href="#"
+              onClick={() => setThemeMethod("analogous")}
+            >
               analogous
             </a>
           </li>

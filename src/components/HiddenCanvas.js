@@ -17,7 +17,7 @@ export default function HiddenCanvas({ colors, savePNG, setImgData }) {
     ctx.fillStyle = colorRight2;
     ctx.fillRect(600, 0, 150, 500);
     ctx.fillStyle = "#222";
-    ctx.font = "20px Source Code Pro";
+    ctx.font = "20px Source Code Pro, monospace";
     ctx.fillText(colorLeft2.toUpperCase(), 30, 450);
     ctx.fillText(colorLeft1.toUpperCase(), 180, 450);
     ctx.fillText(colorCenter.toUpperCase(), 330, 450);

@@ -1,16 +1,35 @@
-import { hsluvToHex } from "hsluv";
+import * as color from "../utils/colorGenerators";
+import { useState, useEffect } from "react";
 import Icon from "../assets/icons/play_circle_outline.svg";
 import "./Play.css";
 
-export default function Play({ colors, setColors }) {
-  // const { colorLeft2, colorLeft1, colorCenter, colorRight1, colorRight2 } =
-  //   colors;
+export default function Play({ colors, setColors, themeMethod }) {
+  const [randomHue, setRandomHue] = useState(30);
 
-  const saturation = 80;
-  const brightness = 50;
+  let randColor;
+  let hue = color.generateRandomHue();
+  // setting minimum distance btw random colors
 
-  const randColor = generateHsluvRandomColor(saturation, brightness);
-  const palette = generatePaletteHsluv(randColor);
+  if (Math.abs(hue - randomHue) < 16) {
+    console.log("too small!");
+    hue = hue + 16;
+  } else {
+    console.log("right distance!");
+  }
+  randColor = color.generateHsluvColor(hue, 80, 60);
+  let palette;
+  // const palette = color.generatePaletteHsluv(randColor);
+
+  switch (themeMethod) {
+    case "splitComplementary":
+      palette = color.generateThemeSplit(randColor);
+      break;
+    case "analogous":
+      palette = color.generateThemeAnalogous(randColor);
+      break;
+    default:
+      break;
+  }
 
   const handleClick = () => {
     setColors((prevColors) => {
@@ -21,61 +40,6 @@ export default function Play({ colors, setColors }) {
     console.log(colors);
     console.log("palette: " + palette);
   };
-
-  // console.log("colorCenter: " + colorCenter);
-
-  // console.log(palette);
-
-  // colorCenter.style.backgroundColor = hsluvToHex(palette.colorCenter);
-  // colorRight1.style.backgroundColor = hsluvToHex(palette.colorRight1);
-  // colorRight2.style.backgroundColor = hsluvToHex(palette.colorRight2);
-  // colorLeft1.style.backgroundColor = hsluvToHex(palette.colorLeft1);
-  // colorLeft2.style.backgroundColor = hsluvToHex(palette.colorLeft2);
-
-  // first color randomly generated
-  function generateHsluvRandomColor(saturation = 80, lightness = 65) {
-    let hue = Math.trunc(Math.random() * 361);
-    // keep hue btw bounds
-    hue = hue % 360;
-    // hue > 360 ? (hue = hue - 360) : hue;
-    const hsluvColor = [hue, saturation, lightness];
-    console.log(`hsluv color: ${hsluvColor}`);
-    return hsluvColor;
-  }
-
-  function generatePaletteHsluv(centralColor) {
-    const analogDelta = 22;
-    const complementaryDelta1 = 180 - analogDelta;
-    const complementaryDelta2 = 180 + analogDelta;
-    const centralHue = centralColor[0];
-    const hueRight1 = centralHue + analogDelta;
-
-    const colors = {
-      colorCenter: hsluvToHex(centralColor),
-      colorRight1: hsluvToHex([
-        centralHue + analogDelta,
-        saturation,
-        brightness,
-      ]),
-      colorRight2: hsluvToHex([
-        centralHue + analogDelta * 2,
-        saturation,
-        brightness,
-      ]),
-      colorLeft1: hsluvToHex([
-        centralHue - complementaryDelta1,
-        saturation,
-        brightness,
-      ]),
-      colorLeft2: hsluvToHex([
-        centralHue - complementaryDelta2 - analogDelta,
-        saturation,
-        brightness,
-      ]),
-    };
-
-    return colors;
-  }
 
   return (
     <div className="playIcon" onClick={handleClick}>
