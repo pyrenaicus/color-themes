@@ -16,7 +16,8 @@ export default function Play({ colors, setColors, themeMethod }) {
   } else {
     console.log("right distance!");
   }
-  randColor = color.generateHsluvColor(hue, 80, 60);
+  // randColor = color.generateHsluvColor(hue, 80, 60);
+  randColor = color.baseColor(hue);
   let palette;
   // const palette = color.generatePaletteHsluv(randColor);
 
@@ -32,11 +33,7 @@ export default function Play({ colors, setColors, themeMethod }) {
   }
 
   const handleClick = () => {
-    setColors((prevColors) => {
-      return {
-        ...palette,
-      };
-    });
+    setColors((prevColors) => palette);
     console.log(colors);
     console.log("palette: " + palette);
   };

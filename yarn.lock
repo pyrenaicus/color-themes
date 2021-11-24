@@ -3340,6 +3340,13 @@
   "resolved" "https://registry.npmjs.org/chownr/-/chownr-2.0.0.tgz"
   "version" "2.0.0"
 
+"chroma-js@^2.1.2":
+  "integrity" "sha512-ri/ouYDWuxfus3UcaMxC1Tfp3IE9K5iQzxc2hSxbBRVNQFut1UuGAsZmiAf2mOUubzGJwgMSv9lHg+XqLaz1QQ=="
+  "resolved" "https://registry.npmjs.org/chroma-js/-/chroma-js-2.1.2.tgz"
+  "version" "2.1.2"
+  dependencies:
+    "cross-env" "^6.0.3"
+
 "chrome-trace-event@^1.0.2":
   "integrity" "sha512-9e/zx1jw7B4CO+c/RXoCsfg/x1AfUBioy4owYH0bJprEYAx5hRFLRhWBqHAG57D0ZM4H7vxbP7bPe0VwhQRYDQ=="
   "resolved" "https://registry.npmjs.org/chrome-trace-event/-/chrome-trace-event-1.0.2.tgz"
@@ -3717,6 +3724,13 @@
     "ripemd160" "^2.0.0"
     "safe-buffer" "^5.0.1"
     "sha.js" "^2.4.8"
+
+"cross-env@^6.0.3":
+  "integrity" "sha512-+KqxF6LCvfhWvADcDPqo64yVIB31gv/jQulX2NGzKS/g3GEVz6/pt4wjHFtFWsHMddebWD/sDthJemzM4MaAag=="
+  "resolved" "https://registry.npmjs.org/cross-env/-/cross-env-6.0.3.tgz"
+  "version" "6.0.3"
+  dependencies:
+    "cross-spawn" "^7.0.0"
 
 "cross-spawn@^6.0.0":
   "integrity" "sha512-eTVLrBSt7fjbDygz805pMnstIs2VTBNkRm0qxZd+M7A5XDdxVRWO5MxGBXZhjY4cqLYLdtrGqRf8mBPmzwSpWQ=="
@@ -6632,6 +6646,7 @@
     "jest-snapshot" "^26.6.2"
 
 "jest-resolve@*":
+  "integrity" "sha512-tRAz2bwraHufNp+CCmAD8ciyCpXCs1NQxB5EJAmtCFy6BN81loFEGWKzYu26Y62lAJJe4X4jg36Kf+NsQyiStQ=="
   "version" "26.6.0"
   dependencies:
     "@jest/types" "^26.6.0"

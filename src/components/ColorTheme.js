@@ -1,8 +1,11 @@
 import "./ColorTheme.css";
 
 export default function ColorTheme({ colors }) {
-  const { colorLeft2, colorLeft1, colorCenter, colorRight1, colorRight2 } =
-    colors;
+  const colorLeft2 = colors[0];
+  const colorLeft1 = colors[1];
+  const colorCenter = colors[2];
+  const colorRight1 = colors[3];
+  const colorRight2 = colors[4];
 
   return (
     <div className="container">

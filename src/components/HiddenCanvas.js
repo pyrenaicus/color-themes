@@ -1,8 +1,13 @@
 import { useRef, useEffect, useState } from "react";
 
 export default function HiddenCanvas({ colors, savePNG, setImgData }) {
-  const { colorLeft2, colorLeft1, colorCenter, colorRight1, colorRight2 } =
-    colors;
+  // const { colorLeft2, colorLeft1, colorCenter, colorRight1, colorRight2 } =
+  //   colors;
+  const colorLeft2 = colors[0];
+  const colorLeft1 = colors[1];
+  const colorCenter = colors[2];
+  const colorRight1 = colors[3];
+  const colorRight2 = colors[4];
   const canvasRef = useRef(null);
 
   const draw = (ctx) => {
