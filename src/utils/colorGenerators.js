@@ -26,15 +26,17 @@ export function splitComplementaryTheme(seedColor) {
   const delta2 = 195;
   const hue1 = seedHue + delta1;
   const hue2 = seedHue + delta2;
-  const colorLeft1 = chroma.hsl(seedHue + 20, s, l);
+  const colorLeft2 = chroma.hsl(seedHue + 60, s, l);
   const colorRight1 = chroma.hsl(hue1, s, l);
   const colorRight2 = chroma.hsl(hue2, s, l);
-  const colors = chroma
-    .scale([seedColor, colorRight2])
+  let colors = chroma
+    .scale([colorLeft2, seedColor])
     .correctLightness()
-    .gamma(0.4)
-    .mode("lab")
-    .colors(5);
+    .mode("lrgb")
+    .colors(3);
+  colors = [...colors, chroma(colorRight1).hex(), chroma(colorRight2).hex()];
+  console.log("colors...:");
+  console.log(colors);
   return colors;
 }
 
@@ -57,16 +59,19 @@ export function complementaryTheme(seedColor) {
 // analogous theme (0, 30, 60), seed on left
 export function analogousTheme(seedColor) {
   const seedHue = chroma(seedColor).get("hsl.h");
+  // const seedHue = 50;
+  console.log("seedColor: ");
+  console.log(chroma(seedColor).hsl());
   const s = chroma(seedColor).get("hsl.s");
   const l = chroma(seedColor).get("hsl.l");
-  const delta = 60;
+  const delta = 80;
   const hue = (seedHue + delta) % 360;
-  const colorLeft = chroma.hsl(seedHue, 0.4, 0.3);
-  const colorRight = chroma.hsl(hue, 0.84, 0.7);
-  const colorCenter = chroma.hsl(seedHue + 30, 0.7, 0.6);
+  const colorLeft = chroma.hsl(seedHue, 0.8, 0.5);
+  // const colorCenter = chroma.hsl(seedHue + 30, 0.8, 0.6);
+  const colorRight = chroma.hsl(hue, 0.3, 0.5);
   const colors = chroma
-    .bezier([colorLeft, colorCenter, colorRight])
-    .scale()
+    // .bezier([colorLeft, colorRight])
+    .scale([colorLeft, colorRight])
     .correctLightness()
     .mode("lab")
     .colors(5);
@@ -78,7 +83,7 @@ export function monochromaticTheme(seedColor) {
   const hue = chroma(seedColor).get("hsl.h");
   const s = chroma(seedColor).get("hsl.s");
   const l = chroma(seedColor).get("hsl.l");
-  const colorLeft = chroma.hsl(hue, 0.6, 0.1);
+  const colorLeft = chroma.hsl(hue, 0.7, 0.2);
   const colorRight = chroma.hsl(hue + 180, 0.6, 0.96);
   const colors = chroma
     .bezier([colorLeft, colorRight])
@@ -87,4 +92,13 @@ export function monochromaticTheme(seedColor) {
     .mode("lab")
     .colors(5);
   return colors;
+}
+
+// check contrast
+export function checkMinContrast(color1, color2) {
+  if (chroma.contrast(color1, color2) < 4.5) {
+    return false;
+  } else {
+    return true;
+  }
 }

@@ -26,21 +26,30 @@
   transition: transform 250ms ease-in-out;
   background: transparent;
 }
+
 .sidebarMenuInner {
   margin: 0;
   padding: 0;
   /* border-top: 1px solid rgba(255, 255, 255, 0.1); */
 }
 
+.white {
+  color: #fff;
+}
+
+.black {
+  color: #000;
+}
+
 .menu {
   list-style: none;
-  color: #fff;
   padding-left: 0.4rem;
   padding-top: 0.6rem;
   padding-bottom: 0.6rem;
 }
 
 .title {
+  /* color: white; */
   text-transform: uppercase;
   font-weight: bold;
   padding-left: 0.6rem;
@@ -50,11 +59,16 @@
 }
 
 .menuItem {
-  color: #fff;
+  /* color: white; */
   text-decoration: none;
   padding-left: 20px;
   cursor: pointer;
   /* border-bottom: 1px solid rgba(255, 255, 255, 0.1); */
+}
+
+.active {
+  text-decoration: underline;
+  font-weight: 400;
 }
 
 #numInput {

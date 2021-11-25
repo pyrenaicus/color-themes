@@ -1,12 +1,32 @@
 import "./Menu.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { checkMinContrast } from "../utils/colorGenerators";
 
-export default function Menu({ savePNG, imgData, setThemeMethod }) {
-  const [activeMenu, setActiveMenu] = useState("complementary");
+export default function Menu({
+  savePNG,
+  imgData,
+  setThemeMethod,
+  themeMethod,
+  colors,
+}) {
+  const [lowContrast, setLowContrast] = useState(false);
+  const menuColor = "#fff";
+
+  useEffect(() => {
+    if (!checkMinContrast(menuColor, colors[0])) {
+      setLowContrast(true);
+    } else {
+      setLowContrast(false);
+    }
+  }, [colors]);
+
   function saveImage() {
     savePNG.current();
-    console.log(savePNG.current);
   }
+
+  console.log("menuColor: " + menuColor);
+
+  // const styleMenu = lowContrast ? { color: "#000" } : { color: "#fff" };
   return (
     <>
       <div className="header"></div>
@@ -17,55 +37,64 @@ export default function Menu({ savePNG, imgData, setThemeMethod }) {
         <div className="spinner diagonal part-2"></div>
       </label>
       <div id="sidebarMenu">
-        <ul className="sidebarMenuInner">
+        <ul
+          className={
+            !lowContrast ? "sidebarMenuInner white" : "sidebarMenuInner black"
+          }
+        >
           <li className="menu title">color combination</li>
           <li className="menu">
-            <a
-              className="menuItem"
-              href="#"
+            <p
+              className={
+                themeMethod === "splitComplementary"
+                  ? "menuItem active"
+                  : "menuItem"
+              }
               onClick={() => setThemeMethod("splitComplementary")}
             >
               split complementary
-            </a>
+            </p>
           </li>
           <li className="menu">
-            <a
-              className="menuItem"
-              href="#"
+            <p
+              className={
+                themeMethod === "complementary" ? "menuItem active" : "menuItem"
+              }
               onClick={() => setThemeMethod("complementary")}
-              // {activeMenu && className='activeMenu'}
             >
               complementary
-            </a>
+            </p>
           </li>
           <li className="menu">
-            <a
-              className="menuItem"
-              href="#"
+            <p
+              className={
+                themeMethod === "analogous" ? "menuItem active" : "menuItem"
+              }
               onClick={() => setThemeMethod("analogous")}
             >
               analogous
-            </a>
+            </p>
           </li>
           <li className="menu">
-            <a
-              className="menuItem"
-              href="#"
+            <p
+              className={
+                themeMethod === "monochromatic" ? "menuItem active" : "menuItem"
+              }
               onClick={() => setThemeMethod("monochromatic")}
             >
               monochromatic
-            </a>
+            </p>
           </li>
-          <li className="menu">
-            <a className="menuItem" href="#">
+          {/* <li className="menu">
+            <p className="menuItem">
               triad
-            </a>
+            </p>
           </li>
           <li className="menu">
-            <a className="menuItem" href="#">
+            <a className="menuItem">
               tetrad
             </a>
-          </li>
+          </li> */}
           <li className="menu title">number of colors</li>
           <div id="numInput">
             <input

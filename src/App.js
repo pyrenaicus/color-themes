@@ -27,6 +27,8 @@ export default function App() {
         savePNG={savePNG}
         imgData={imgData}
         setThemeMethod={setThemeMethod}
+        themeMethod={themeMethod}
+        colors={colors}
       />
       <ColorTheme colors={colors} />
       <Play colors={colors} setColors={setColors} themeMethod={themeMethod} />
