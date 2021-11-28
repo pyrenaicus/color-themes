@@ -17,6 +17,16 @@ export function baseColor(hue) {
   return color;
 }
 
+// generate a random color
+export function randomColor(hue, angularDist) {
+  let randomHue = generateRandomHue();
+  // setting minimum distance btw random colors
+  if (Math.abs(randomHue - hue) < angularDist) {
+    randomHue = randomHue + 16;
+  }
+  return baseColor(randomHue);
+}
+
 // split complementary theme (+180º), seed on left
 export function splitComplementaryTheme(seedColor) {
   const seedHue = chroma(seedColor).get("hsl.h");
@@ -81,13 +91,11 @@ export function analogousTheme(seedColor) {
 // monochromatic theme, seed on left
 export function monochromaticTheme(seedColor) {
   const hue = chroma(seedColor).get("hsl.h");
-  const s = chroma(seedColor).get("hsl.s");
-  const l = chroma(seedColor).get("hsl.l");
-  const colorLeft = chroma.hsl(hue, 0.7, 0.2);
-  const colorRight = chroma.hsl(hue + 180, 0.6, 0.96);
+  const colorLeft = chroma.hsl(hue, 0.7, 0.1);
+  const colorRight = chroma.hsl(hue + 180, 0.9, 0.96);
   const colors = chroma
-    .bezier([colorLeft, colorRight])
-    .scale()
+
+    .scale([colorLeft, colorRight])
     .correctLightness()
     .mode("lab")
     .colors(5);

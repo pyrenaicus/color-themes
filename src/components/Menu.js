@@ -1,6 +1,14 @@
 import "./Menu.css";
 import { useState, useEffect } from "react";
-import { checkMinContrast } from "../utils/colorGenerators";
+import {
+  checkMinContrast,
+  randomColor,
+  splitComplementaryTheme,
+  complementaryTheme,
+  analogousTheme,
+  monochromaticTheme,
+} from "../utils/colorGenerators";
+import SaveJson from "./SaveJson";
 
 export default function Menu({
   savePNG,
@@ -8,6 +16,8 @@ export default function Menu({
   setThemeMethod,
   themeMethod,
   colors,
+  setColors,
+  randomHue,
 }) {
   const [lowContrast, setLowContrast] = useState(false);
   const menuColor = "#fff";
@@ -24,9 +34,35 @@ export default function Menu({
     savePNG.current();
   }
 
+  function themeMethodClick(themeMethod) {
+    setThemeMethod(themeMethod);
+    const randColor = randomColor(randomHue, 16);
+    let palette;
+
+    switch (themeMethod) {
+      case "complementary":
+        palette = complementaryTheme(randColor);
+        break;
+      case "splitComplementary":
+        palette = splitComplementaryTheme(randColor);
+        break;
+      case "analogous":
+        palette = analogousTheme(randColor);
+        break;
+      case "monochromatic":
+        palette = monochromaticTheme(randColor);
+        break;
+      default:
+        palette = complementaryTheme(randColor);
+        break;
+    }
+
+    // const palette = splitComplementaryTheme(randColor);
+    setColors((prev) => palette);
+  }
+
   console.log("menuColor: " + menuColor);
 
-  // const styleMenu = lowContrast ? { color: "#000" } : { color: "#fff" };
   return (
     <>
       <div className="header"></div>
@@ -50,7 +86,7 @@ export default function Menu({
                   ? "menuItem active"
                   : "menuItem"
               }
-              onClick={() => setThemeMethod("splitComplementary")}
+              onClick={() => themeMethodClick("splitComplementary")}
             >
               split complementary
             </p>
@@ -60,7 +96,7 @@ export default function Menu({
               className={
                 themeMethod === "complementary" ? "menuItem active" : "menuItem"
               }
-              onClick={() => setThemeMethod("complementary")}
+              onClick={() => themeMethodClick("complementary")}
             >
               complementary
             </p>
@@ -70,7 +106,7 @@ export default function Menu({
               className={
                 themeMethod === "analogous" ? "menuItem active" : "menuItem"
               }
-              onClick={() => setThemeMethod("analogous")}
+              onClick={() => themeMethodClick("analogous")}
             >
               analogous
             </p>
@@ -80,7 +116,7 @@ export default function Menu({
               className={
                 themeMethod === "monochromatic" ? "menuItem active" : "menuItem"
               }
-              onClick={() => setThemeMethod("monochromatic")}
+              onClick={() => themeMethodClick("monochromatic")}
             >
               monochromatic
             </p>
@@ -95,7 +131,7 @@ export default function Menu({
               tetrad
             </a>
           </li> */}
-          <li className="menu title">number of colors</li>
+          {/* <li className="menu title">number of colors</li>
           <div id="numInput">
             <input
               type="range"
@@ -104,19 +140,17 @@ export default function Menu({
               min="3"
               max="12"
             />
-          </div>
+          </div> */}
           <li className="menu title">export colors</li>
           <li className="menu">
-            <a
-              className="menuItem"
-              download="color-theme.png"
-              href={imgData}
-              onClick={saveImage}
-            >
-              png
+            <a download="color-theme.png" href={imgData} onClick={saveImage}>
+              <p className="menuItem">PNG</p>
             </a>
           </li>
           <li className="menu">
+            <SaveJson colors={colors} />
+          </li>
+          {/* <li className="menu">
             <a className="menuItem" href="#">
               json
             </a>
@@ -125,7 +159,7 @@ export default function Menu({
             <a className="menuItem" href="#">
               sass
             </a>
-          </li>
+          </li> */}
         </ul>
       </div>
     </>

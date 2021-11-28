@@ -1,7 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 
 export default function HiddenCanvas({ colors, savePNG, setImgData }) {
-  // const { colorLeft2, colorLeft1, colorCenter, colorRight1, colorRight2 } =
   //   colors;
   const colorLeft2 = colors[0];
   const colorLeft1 = colors[1];
@@ -45,7 +44,6 @@ export default function HiddenCanvas({ colors, savePNG, setImgData }) {
     // this drove me crazy! just comment below line and it works fine!
     // dataURL = dataURL.replace("data:image/png;base64,", "");
     setImgData(dataURL);
-    console.log("WHOOO!");
   }
 
   return (

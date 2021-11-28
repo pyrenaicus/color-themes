@@ -2,6 +2,14 @@
       CSS-only Hamburger Menu
       https://codepen.io/pyrenaicus/pen/vYJPJgp
  =============================== */
+ul {
+  list-style: none;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
 
 .header {
   display: block;
@@ -54,7 +62,7 @@
   font-weight: bold;
   padding-left: 0.6rem;
 
-  cursor: pointer;
+  /* cursor: pointer; */
   /* border-bottom: 1px solid rgba(255, 255, 255, 0.1); */
 }
 
@@ -69,6 +77,15 @@
 .active {
   text-decoration: underline;
   font-weight: 400;
+}
+
+/* keep style of png link as the rest */
+a,
+a:visited,
+a:hover,
+a:active {
+  color: inherit;
+  text-decoration: none;
 }
 
 #numInput {
@@ -142,4 +159,41 @@ input[type="checkbox"]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
   box-sizing: border-box;
   transform: rotate(-135deg);
   margin-top: -9px;
+}
+
+@media (max-width: 600px) {
+  #sidebarMenu {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background-color: rgba(130, 130, 130, 1);
+    transform: translateX(-100%);
+    margin-top: 0;
+    z-index: 2;
+  }
+
+  .menu {
+    list-style: none;
+    padding-left: 0;
+    padding-top: 1.5rem;
+    /* padding-bottom: 2rem; */
+  }
+
+  .title {
+    /* color: white; */
+    text-transform: uppercase;
+    font-weight: bold;
+    /* padding-top: 2rem; */
+    /* cursor: pointer; */
+    /* border-bottom: 1px solid rgba(255, 255, 255, 0.1); */
+  }
+
+  .menuItem {
+    /* color: white; */
+    padding-left: 0;
+    padding-bottom: 0.6rem;
+    text-decoration: none;
+    cursor: pointer;
+    /* border-bottom: 1px solid rgba(255, 255, 255, 0.1); */
+  }
 }

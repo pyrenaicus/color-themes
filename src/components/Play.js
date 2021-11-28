@@ -1,6 +1,7 @@
 import {
   generateRandomHue,
   baseColor,
+  randomColor,
   complementaryTheme,
   splitComplementaryTheme,
   analogousTheme,
@@ -10,17 +11,8 @@ import { useState, useEffect } from "react";
 import Icon from "../assets/icons/play_circle_outline.svg";
 import "./Play.css";
 
-export default function Play({ colors, setColors, themeMethod }) {
-  const [randomHue, setRandomHue] = useState(30);
-
-  let randColor;
-  let hue = generateRandomHue();
-  // setting minimum distance btw random colors
-  if (Math.abs(hue - randomHue) < 16) {
-    hue = hue + 16;
-  }
-  // randColor = color.generateHsluvColor(hue, 80, 60);
-  randColor = baseColor(hue);
+export default function Play({ randomHue, colors, setColors, themeMethod }) {
+  const randColor = randomColor(randomHue, 16);
   console.log("base color: ");
   console.log(randColor);
   let palette;
@@ -51,8 +43,8 @@ export default function Play({ colors, setColors, themeMethod }) {
   };
 
   return (
-    <div className="playIcon" onClick={handleClick}>
-      <img src={Icon} alt="play icon" />
+    <div className="playIcon">
+      <img src={Icon} alt="play icon" onClick={handleClick} />
     </div>
   );
 }

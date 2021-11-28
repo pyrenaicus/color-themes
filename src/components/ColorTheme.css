@@ -4,37 +4,36 @@
   height: 100vh;
 }
 
-#colorCenter {
-  background-color: #4dc2a4;
+.color {
   height: 100%;
   width: 100%;
   margin: auto;
+  display: flex;
+  justify-content: center;
 }
 
-#colorRight1 {
-  background-color: #4faec5;
-  height: 100%;
-  width: 100%;
-  margin: auto;
+.hexCode {
+  align-self: flex-end;
+  padding: 0.6rem;
+  background: rgba(240, 240, 240, 0.3);
+  margin-bottom: 9rem;
+  /* on click select all the text in div */
+  -webkit-user-select: all; /* for Safari */
+  user-select: all;
 }
 
-#colorRight2 {
-  background-color: #527cc7;
-  height: 100%;
-  width: 100%;
-  margin: auto;
+.info {
 }
 
-#colorLeft1 {
-  background-color: #9844a7;
-  height: 100%;
-  width: 100%;
-  margin: auto;
-}
+@media (max-width: 600px) {
+  .container {
+    /* width: 100; */
+    display: flex;
+    flex-direction: column;
+  }
 
-#colorLeft2 {
-  background-color: #844290;
-  height: 100%;
-  width: 100%;
-  margin: auto;
+  .hexCode {
+    margin-bottom: 0;
+    align-self: flex-start;
+  }
 }
