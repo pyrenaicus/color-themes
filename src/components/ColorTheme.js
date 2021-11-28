@@ -9,20 +9,20 @@ export default function ColorTheme({ colors }) {
 
   return (
     <div className="container">
-      <div class="color" style={{ backgroundColor: colorLeft2 }}>
+      <div className="color" style={{ backgroundColor: colorLeft2 }}>
         <p className="hexCode">{colors[0]}</p>
         {/* <p className="info">info</p> */}
       </div>
-      <div class="color" style={{ backgroundColor: colorLeft1 }}>
+      <div className="color" style={{ backgroundColor: colorLeft1 }}>
         <p className="hexCode">{colors[1]}</p>
       </div>
-      <div class="color" style={{ backgroundColor: colorCenter }}>
+      <div className="color" style={{ backgroundColor: colorCenter }}>
         <p className="hexCode">{colors[2]}</p>
       </div>
-      <div class="color" style={{ backgroundColor: colorRight1 }}>
+      <div className="color" style={{ backgroundColor: colorRight1 }}>
         <p className="hexCode">{colors[3]}</p>
       </div>
-      <div class="color" style={{ backgroundColor: colorRight2 }}>
+      <div className="color" style={{ backgroundColor: colorRight2 }}>
         <p className="hexCode">{colors[4]}</p>
       </div>
     </div>

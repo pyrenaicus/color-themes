@@ -17,6 +17,16 @@ export function baseColor(hue) {
   return color;
 }
 
+// Color from Hex string
+export function colorHex(hex) {
+  return chroma(hex);
+}
+
+// remove # from hex string
+export function removeHex(string) {
+  return string.replace("#", "");
+}
+
 // generate a random color
 export function randomColor(hue, angularDist) {
   let randomHue = generateRandomHue();

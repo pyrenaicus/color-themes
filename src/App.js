@@ -9,6 +9,8 @@ import HiddenCanvas from "./components/HiddenCanvas";
 export default function App() {
   const [randomHue, setRandomHue] = useState(30);
   const [colors, setColors] = useState(complementaryTheme(baseColor(60)));
+  console.log("first colors:");
+  console.log(colors);
 
   const [themeMethod, setThemeMethod] = useState("complementary");
 
