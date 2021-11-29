@@ -85,9 +85,10 @@ Using [chroma.contrast](https://vis4.net/chromajs/#chroma-contrast) to calculate
 
 Right now the app is a minimal working solution developed during a 2 weeks sprint. To keep on adding functionality like:
 
-- Keep a record of favorite color themes, save it to localStorage
-- pass color codes to URL search string with react router, so you can share a color theme by sharing a url
+- pass color codes to URL search string with react router, so you can share a color theme bjust y sharing a url.
+- User registration, allowing to keep a record of favorite color themes. Save the data to Firebase.
 - Create color themes with variable number (btw 3 and 12) of colors. This will require a rewrite of almost everything.
+- Add a page with info about color harmonies.
 
 ## CREDITS
 
