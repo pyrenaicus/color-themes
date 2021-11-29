@@ -77,6 +77,10 @@ Monochromatic color schemes use only one hue, varying only it's lightness and sa
 
 The idea is to create a random color, and from it, different color schemes
 
+### Contrast ratio between menu text and background colors
+
+Using [chroma.contrast](https://vis4.net/chromajs/#chroma-contrast) to calculate contrast ratio, when contrast is below minimum, text color changes to ensure it's readable.
+
 ## TODO
 
 Right now the app is a minimal working solution developed during a 2 weeks sprint. To keep on adding functionality like:
