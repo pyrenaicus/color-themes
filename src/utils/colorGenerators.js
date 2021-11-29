@@ -1,8 +1,5 @@
 import chroma from "chroma-js";
 
-// const saturation = 60;
-// const lightness = 60;
-
 const sat = 0.8;
 const light = 0.6;
 // random value btw 0 and 360

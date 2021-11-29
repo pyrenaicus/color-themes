@@ -1,13 +1,10 @@
 import {
-  generateRandomHue,
-  baseColor,
   randomColor,
   complementaryTheme,
   splitComplementaryTheme,
   analogousTheme,
   monochromaticTheme,
 } from "../utils/colorGenerators";
-import { useState, useEffect } from "react";
 import Icon from "../assets/icons/play_circle_outline.svg";
 import "./Play.css";
 
@@ -16,7 +13,7 @@ export default function Play({ randomHue, colors, setColors, themeMethod }) {
   console.log("base color: ");
   console.log(randColor);
   let palette;
-  palette = complementaryTheme(randColor);
+  palette = complementaryTheme(randColor); // default
   switch (themeMethod) {
     case "complementary":
       palette = complementaryTheme(randColor);

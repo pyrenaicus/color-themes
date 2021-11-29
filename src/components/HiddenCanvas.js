@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 
 export default function HiddenCanvas({ colors, savePNG, setImgData }) {
   //   colors;
@@ -7,6 +7,7 @@ export default function HiddenCanvas({ colors, savePNG, setImgData }) {
   const colorCenter = colors[2];
   const colorRight1 = colors[3];
   const colorRight2 = colors[4];
+  // useRef hook to reference canvas element
   const canvasRef = useRef(null);
 
   const draw = (ctx) => {

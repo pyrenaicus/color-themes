@@ -15,7 +15,7 @@ export default function App() {
   const [themeMethod, setThemeMethod] = useState("complementary");
 
   const [imgData, setImgData] = useState("");
-
+  // useRef hook to reference savePNG, passed as props to <Menu />
   const savePNG = useRef(null);
 
   return (

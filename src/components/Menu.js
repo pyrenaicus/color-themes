@@ -22,6 +22,7 @@ export default function Menu({
   const [lowContrast, setLowContrast] = useState(false);
   const menuColor = "#fff";
 
+  // check contrast between text and background color
   useEffect(() => {
     if (!checkMinContrast(menuColor, colors[0])) {
       setLowContrast(true);
@@ -29,11 +30,11 @@ export default function Menu({
       setLowContrast(false);
     }
   }, [colors]);
-
+  // save PNG
   function saveImage() {
     savePNG.current();
   }
-
+  // choose btw color themes
   function themeMethodClick(themeMethod) {
     setThemeMethod(themeMethod);
     const randColor = randomColor(randomHue, 16);
@@ -57,11 +58,10 @@ export default function Menu({
         break;
     }
 
-    // const palette = splitComplementaryTheme(randColor);
     setColors((prev) => palette);
   }
 
-  console.log("menuColor: " + menuColor);
+  // console.log("menuColor: " + menuColor);
 
   return (
     <>
