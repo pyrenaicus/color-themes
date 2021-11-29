@@ -6,6 +6,10 @@
 
 Front end application to create color themes
 
+## Demo / Preview
+
+[https://necessary-letter.surge.sh/](https://necessary-letter.surge.sh/)
+
 ## General Info
 
 Developed as a personal project while following Barcelona's IT Academy React Front End Path.
@@ -16,8 +20,9 @@ Just click on the play button to generate a 5 color theme, choose from different
 
 Project created with:
 
-- [React](https://reactjs.org/) for building all the UI. Working exclusively with functional components and React Hooks.
-- [Chroma-js](http://vis4.net/chromajs/) for color conversion and interpolation
+- [React](https://reactjs.org/) for building all the UI. Working exclusively with functional components and React Hooks: useState, useEffect, useRef.
+- [Chroma-js](http://vis4.net/chromajs/) for color conversion and interpolation.
+- [Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) to generate a PNG image with the color theme.
 
 ## Setup
 
@@ -56,12 +61,12 @@ A solution was to interpolate color transitions in [CIE Lab color space](https:/
 
 #### Analogous
 
-An analogous color palette is a group of colors that are located close to each other on the color wheel, often those are hues around 30 degrees apart from the base hue.
+An analogous color palette is a group of colors that are located close to each other on the [color wheel](https://en.wikipedia.org/wiki/Color_wheel), often those are hues around 30 degrees apart from the base hue.
 Analogous color schemes are found in nature, and are often soothing and relaxing to the eye.
 
 #### Complementary
 
-A complentary color is one that exists in the opposite side of the color wheel.
+A complentary color is one that exists in the opposite side of the [color wheel](https://en.wikipedia.org/wiki/Color_wheel).
 Complementary color schemes are contrasting and energizing by nature.
 
 #### Monochromatic
@@ -70,16 +75,24 @@ Monochromatic color schemes use only one hue, varying only it's lightness and sa
 
 The idea is to create a random color, and from it, different color schemes
 
-Main points:
+## TODO
 
-Random color generator must return useful colors. A truly random color generator produces many color not that useful as a color scheme base, that's why I end up using colors in HSL, randomizing only the hue part, and letting saturation and lightness constant for all colors.
+- Create color themes with variable number of colors (btw 3 and 12)
+- Keep a record of favorite color themes, save it to localStorage
+- pass color codes to URL search string with react router, so you can share a color theme by sharing a url
 
-The idea is to have a minimal working solution by the end of the sprint. By a minimal working solution I understand a color scheme of 5 colors, 3 analagous + 2 complementaries.
+## CREDITS
 
-Working with HSL colors in theory was the way to go, but in reality, due to the way human perception works, it didn't work out. For a clear explanation of the problem, see Alexei Boronine's post [Color Spaces for Human Beings](https://www.boronine.com/2012/03/26/Color-Spaces-for-Human-Beings/).
+[chroma.js](https://vis4.net/chromajs) used for all color calculations.
 
-A working solution is using [HSLuv color space](https://www.hsluv.org/) developed by Boronine, it's implementation in Javascript: [Human-friendly HSL, reference implementation](https://github.com/hsluv/hsluv).
+I read through some interesting posts on the subject, to list just a few:
 
-A work in progress can be seen [here](https://suspicious-poitras-18fbc7.netlify.app/)
+- [V6: Color](https://v6.robweychert.com/blog/2018/02/v6-color/)
+- [How to Generate Random Colors Programmatically](https://martin.ankerl.com/2009/12/09/how-to-create-random-colors-programmatically/)
+- [Converting Color Spaces in JavaScript](https://css-tricks.com/converting-color-spaces-in-javascript/)
+- [Color Harmonies in JavaScript](https://dev.to/benjaminadk/make-color-math-great-again--45of)
+- [Color: From Hexcodes to Eyeballs](http://jamie-wong.com/post/color/)
+- [Canvas with React.js](https://medium.com/@pdx.lucasm/canvas-with-react-js-32e133c05258), this post helped me a lot to create a PNG with the color theme.
+  Have a look at the Trello board of the project for more references: [https://trello.com/b/Q91AixOQ/sprint-9](https://trello.com/b/Q91AixOQ/sprint-9)
 
-[^1]: Colours are said to be in harmony when their juxtaposition produces a satisfying unity or balance to the viewer. Colour harmonies can be created by using two or more shades of the same hue (a monochromatic harmony), or with colors that exist on opposite sides of the color wheel (complementary harmony).
+[^1]: Colours are said to be in harmony when their juxtaposition produces a satisfying unity or balance to the viewer. Colour harmonies can be created by using two or more shades of the same hue (a monochromatic harmony), or with colors that exist on opposite sides of the [color wheel](https://en.wikipedia.org/wiki/Color_wheel) (complementary harmony).
