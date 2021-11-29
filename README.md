@@ -77,9 +77,11 @@ The idea is to create a random color, and from it, different color schemes
 
 ## TODO
 
-- Create color themes with variable number of colors (btw 3 and 12)
+Right now the app is a minimal working solution developed during a 2 weeks sprint. To keep on adding functionality like:
+
 - Keep a record of favorite color themes, save it to localStorage
 - pass color codes to URL search string with react router, so you can share a color theme by sharing a url
+- Create color themes with variable number (btw 3 and 12) of colors. This will require a rewrite of almost everything.
 
 ## CREDITS
 
@@ -93,6 +95,7 @@ I read through some interesting posts on the subject, to list just a few:
 - [Color Harmonies in JavaScript](https://dev.to/benjaminadk/make-color-math-great-again--45of)
 - [Color: From Hexcodes to Eyeballs](http://jamie-wong.com/post/color/)
 - [Canvas with React.js](https://medium.com/@pdx.lucasm/canvas-with-react-js-32e133c05258), this post helped me a lot to create a PNG with the color theme.
+
   Have a look at the Trello board of the project for more references: [https://trello.com/b/Q91AixOQ/sprint-9](https://trello.com/b/Q91AixOQ/sprint-9)
 
 [^1]: Colours are said to be in harmony when their juxtaposition produces a satisfying unity or balance to the viewer. Colour harmonies can be created by using two or more shades of the same hue (a monochromatic harmony), or with colors that exist on opposite sides of the [color wheel](https://en.wikipedia.org/wiki/Color_wheel) (complementary harmony).
