@@ -1,70 +1,85 @@
-# Getting Started with Create React App
+![Color theme header image](./src/assets/images/readme-header.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<br/>
 
-## Available Scripts
+# Color Scheme Generator
 
-In the project directory, you can run:
+Front end application to create color themes
 
-### `yarn start`
+## General Info
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Developed as a personal project while following Barcelona's IT Academy React Front End Path.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Just click on the play button to generate a 5 color theme, choose from different color harmonies in the sliding menu. Once you find an interesting theme, you may download a PNG with the colors, download a JSON, or just copy the hex codes of individual colors.
 
-### `yarn test`
+## Technologies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Project created with:
 
-### `yarn build`
+- [React](https://reactjs.org/) for building all the UI. Working exclusively with functional components and React Hooks.
+- [Chroma-js](http://vis4.net/chromajs/) for color conversion and interpolation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Setup
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Clone and install it locally with npm:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+mkdir color-themes
+cd color-themes
+git clone git@github.com:pyrenaicus/color-themes.git
+npm install
+npm start
+```
 
-### `yarn eject`
+## Features
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+From an initial random color, generate a palette of five colors according to different _color harmonies_[^1]:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- analogous
+- complementary
+- split complementary
+- monochromatic
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Colors were initially expressed in [HSL coordinates](https://en.wikipedia.org/wiki/HSL_and_HSV) as it seemed the most intuitive way to deal with color harmonies (complementary and analog colors can be found just applying a rotation on hue component).
+That was in theory, because right away in the first tests, problems arise, due to the differences between actual _physical lightness_ of a color and _perceived lightness_.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Some interesting articles on this issue:
 
-## Learn More
+- [Color Spaces for Human Beings](https://www.boronine.com/2012/03/26/Color-Spaces-for-Human-Beings/) by Alexei Boronine, creator of [HSLuv](https://www.hsluv.org/).
+- [Hue-angle transitions](https://rileyjshaw.com/blog/hue-angle-transitions#fnref-1) by Riley J. Shaw.
+- [How To Avoid Equidistant HSV Colors](https://www.vis4.net/blog/2011/12/avoid-equidistant-hsv-colors/) by Gregor Aisch, author of [Chroma-js](https://github.com/gka/chroma.js).
+- [Mastering Multi-hued Color Scales with Chroma.js](https://www.vis4.net/blog/2013/09/mastering-multi-hued-color-scales/) by Gregor Aisch.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+A solution was to interpolate color transitions in [CIE Lab color space](https://en.wikipedia.org/wiki/CIELAB_color_space) using [chroma.js](https://vis4.net/chromajs/#color-scales), a small-ish zero-dependency JavaScript library (13.5kB) for all kinds of color conversions and color scales. Chroma.js is pleasantly well documented and easy to use.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### On color harmonies
 
-### Code Splitting
+#### Analogous
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+An analogous color palette is a group of colors that are located close to each other on the color wheel, often those are hues around 30 degrees apart from the base hue.
+Analogous color schemes are found in nature, and are often soothing and relaxing to the eye.
 
-### Analyzing the Bundle Size
+#### Complementary
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+A complentary color is one that exists in the opposite side of the color wheel.
+Complementary color schemes are contrasting and energizing by nature.
 
-### Making a Progressive Web App
+#### Monochromatic
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Monochromatic color schemes use only one hue, varying only it's lightness and saturation.
 
-### Advanced Configuration
+The idea is to create a random color, and from it, different color schemes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Main points:
 
-### Deployment
+Random color generator must return useful colors. A truly random color generator produces many color not that useful as a color scheme base, that's why I end up using colors in HSL, randomizing only the hue part, and letting saturation and lightness constant for all colors.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+The idea is to have a minimal working solution by the end of the sprint. By a minimal working solution I understand a color scheme of 5 colors, 3 analagous + 2 complementaries.
 
-### `yarn build` fails to minify
+Working with HSL colors in theory was the way to go, but in reality, due to the way human perception works, it didn't work out. For a clear explanation of the problem, see Alexei Boronine's post [Color Spaces for Human Beings](https://www.boronine.com/2012/03/26/Color-Spaces-for-Human-Beings/).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+A working solution is using [HSLuv color space](https://www.hsluv.org/) developed by Boronine, it's implementation in Javascript: [Human-friendly HSL, reference implementation](https://github.com/hsluv/hsluv).
+
+A work in progress can be seen [here](https://suspicious-poitras-18fbc7.netlify.app/)
+
+[^1]: Colours are said to be in harmony when their juxtaposition produces a satisfying unity or balance to the viewer. Colour harmonies can be created by using two or more shades of the same hue (a monochromatic harmony), or with colors that exist on opposite sides of the color wheel (complementary harmony).
