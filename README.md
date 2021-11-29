@@ -23,6 +23,8 @@ Project created with:
 - [React](https://reactjs.org/) for building all the UI. Working exclusively with functional components and React Hooks: useState, useEffect, useRef.
 - [Chroma-js](http://vis4.net/chromajs/) for color conversion and interpolation.
 - [Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) to generate a PNG image with the color theme.
+- [CSS Flexbox](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox) responsive layout.
+- [Source Code Pro](https://github.com/adobe-fonts/source-code-pro) font, from [Google Fonts](https://fonts.google.com/)
 
 ## Setup
 
