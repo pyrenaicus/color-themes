@@ -8,7 +8,7 @@ Front end application to create color themes
 
 ## Demo / Preview
 
-[https://necessary-letter.surge.sh/](https://necessary-letter.surge.sh/)
+[https://color-themes.surge.sh/](https://color-themes.surge.sh/)
 
 ## General Info
 
