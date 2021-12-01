@@ -1,10 +1,8 @@
-import {
-  randomColor,
-  complementaryTheme,
-  splitComplementaryTheme,
-  analogousTheme,
-  monochromaticTheme,
-} from "../utils/colorGenerators";
+import { randomColor } from "../utils/colorUtils";
+import createSplitComplementaryTheme from "../logic/createSplitComplementaryTheme";
+import createMonochromaticTheme from "../logic/createMonochromaticTheme";
+import createComplementaryTheme from "../logic/createComplementaryTheme";
+import createAnalogousTheme from "../logic/createAnalogousTheme";
 import Icon from "../assets/icons/play_circle_outline.svg";
 import "./Play.css";
 
@@ -13,22 +11,22 @@ export default function Play({ randomHue, colors, setColors, themeMethod }) {
   console.log("base color: ");
   console.log(randColor);
   let palette;
-  palette = complementaryTheme(randColor); // default
+  palette = createComplementaryTheme(randColor); // default
   switch (themeMethod) {
     case "complementary":
-      palette = complementaryTheme(randColor);
+      palette = createComplementaryTheme(randColor);
       break;
     case "splitComplementary":
-      palette = splitComplementaryTheme(randColor);
+      palette = createSplitComplementaryTheme(randColor);
       break;
     case "analogous":
-      palette = analogousTheme(randColor);
+      palette = createAnalogousTheme(randColor);
       break;
     case "monochromatic":
-      palette = monochromaticTheme(randColor);
+      palette = createMonochromaticTheme(randColor);
       break;
     default:
-      palette = complementaryTheme(randColor);
+      palette = createComplementaryTheme(randColor);
       break;
   }
 

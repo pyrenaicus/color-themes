@@ -1,13 +1,10 @@
 import "./Menu.css";
 import { useState, useEffect } from "react";
-import {
-  checkMinContrast,
-  randomColor,
-  splitComplementaryTheme,
-  complementaryTheme,
-  analogousTheme,
-  monochromaticTheme,
-} from "../utils/colorGenerators";
+import { checkMinContrast, randomColor } from "../utils/colorUtils";
+import createAnalogousTheme from "../logic/createAnalogousTheme";
+import createMonochromaticTheme from "../logic/createMonochromaticTheme";
+import createComplementaryTheme from "../logic/createComplementaryTheme";
+import createSplitComplementaryTheme from "../logic/createSplitComplementaryTheme";
 import SaveJson from "./SaveJson";
 
 export default function Menu({
@@ -42,19 +39,19 @@ export default function Menu({
 
     switch (themeMethod) {
       case "complementary":
-        palette = complementaryTheme(randColor);
+        palette = createComplementaryTheme(randColor);
         break;
       case "splitComplementary":
-        palette = splitComplementaryTheme(randColor);
+        palette = createSplitComplementaryTheme(randColor);
         break;
       case "analogous":
-        palette = analogousTheme(randColor);
+        palette = createAnalogousTheme(randColor);
         break;
       case "monochromatic":
-        palette = monochromaticTheme(randColor);
+        palette = createMonochromaticTheme(randColor);
         break;
       default:
-        palette = complementaryTheme(randColor);
+        palette = createComplementaryTheme(randColor);
         break;
     }
 

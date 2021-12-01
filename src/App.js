@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import "./App.css";
-import { baseColor, complementaryTheme } from "./utils/colorGenerators";
+import { baseColor } from "./utils/colorUtils";
+import createComplementaryTheme from "./logic/createComplementaryTheme";
 import ColorTheme from "./components/ColorTheme";
 import Menu from "./components/Menu";
 import Play from "./components/Play";
@@ -8,7 +9,7 @@ import HiddenCanvas from "./components/HiddenCanvas";
 
 export default function App() {
   const [randomHue, setRandomHue] = useState(30);
-  const [colors, setColors] = useState(complementaryTheme(baseColor(60)));
+  const [colors, setColors] = useState(createComplementaryTheme(baseColor(60)));
   console.log("first colors:");
   console.log(colors);
 
